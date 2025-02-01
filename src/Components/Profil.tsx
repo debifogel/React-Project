@@ -4,15 +4,13 @@ import {  FormEvent, useContext, useEffect, useRef, useState } from "react";
 import { userCotext } from "../Types/User";
 import { login } from "../Types/MobxStore";
 import { observer } from "mobx-react-lite";
-import { useNavigate } from "react-router";
 const Profil= observer(()=>{  
-  const navigate = useNavigate();
 const [userSite,DispachSiteUser]=useContext(userCotext)
 const[toUpdate,setToUpdate]=useState(false)
 const[letter,setLetter]=useState(' ')
 const name = useRef<HTMLInputElement>(null);
-const familyName = useRef<HTMLInputElement>();
-const email = useRef<HTMLInputElement>();
+const familyName = useRef<HTMLInputElement>(null);
+const email = useRef<HTMLInputElement>(null);
 const address = useRef<HTMLInputElement>(null);
 const phone = useRef<HTMLInputElement>(null);
 const password = useRef<HTMLInputElement>(null);
@@ -28,8 +26,7 @@ const styleInput={height:"30",width:"200",margin:"10px"}
           'Content-Type': 'application/json',
           "user-id":JSON.stringify(userSite.id) }
           ,body: JSON.stringify(userSite)})            
-          if(res.status==404){alert("sorry")
-            navigate('/Login')}          
+           if(res.status==403){alert("sorry")}
            if (!res.ok) { throw new Error(`fetch error ${res.status}`) }
            setLetter(userSite.name)               
         }       
