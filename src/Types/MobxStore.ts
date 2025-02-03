@@ -14,16 +14,20 @@ class Recipes {
         if (!response.ok) {
             throw new Error(`Error fetching recipes: ${response.status}`);
         }   
-        this.list=await await response.json();
+        this.list= await response.json();
     };
-    AddRecipe = async (r:Recipe,id:number) => {
+    AddRecipe = async(r:Recipe,id:number) => {
         const response = await fetch('http://localhost:3000/api/recipes', {
-            headers:{ "user-id":JSON.stringify( id)},
             method: 'POST',
-            body:JSON.stringify({r})
-        })    
+            headers: {
+                'Content-Type': 'application/json',
+                'user-id': id.toString()
+            },
+            body: JSON.stringify(r)
+        });
+
         if (!response.ok) {
-            throw new Error(`Error fetching recipes: ${response.status}`);
+            throw new Error('Network response was not ok ' + response.statusText);
         }
         this.fetchRecipes()
          

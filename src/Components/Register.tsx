@@ -1,7 +1,7 @@
 import { Box, Button, Modal, TextField } from "@mui/material"
 import { createContext, FormEvent, useContext, useRef } from "react";
 import axios from "axios";
-import { userCotext } from "../Types/User";
+import { UserCotext } from "../Types/User";
 import { useNavigate } from "react-router-dom"
 import { observer } from "mobx-react-lite";
 import { login } from "../Types/MobxStore";
@@ -24,7 +24,7 @@ export const UserIdContext = createContext<number>(-1);
 export default observer(() => {
     const navigate = useNavigate();
 
-  const [,DispachSiteUser]=useContext(userCotext)
+  const [,DispachSiteUser]=useContext(UserCotext)
     const passwordRef = useRef<HTMLInputElement>(null)
     const emailRef = useRef<HTMLInputElement>(null)
 

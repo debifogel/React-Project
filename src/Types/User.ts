@@ -2,8 +2,8 @@ import { createContext, Dispatch } from "react";
 
  type User={
     id?:number
-    name:string,
-    familyname:string,
+    firstName:string,
+    lastName:string,
     email:string,
     password:string,
     address:string,
@@ -13,8 +13,8 @@ export type UserAction =
  { type:"POST"|"UPDATE"|"DELETE" ; field:User }
  export const initialState: User = {
     id:0,
-    name: '',
-    familyname: '',
+    firstName: '',
+    lastName: '',
     email: '',
     password: '',
     address: '',
@@ -38,5 +38,4 @@ export type UserAction =
 }
 export { UserReducer }
 export type { User }
-
-export const userCotext = createContext<[User, Dispatch<UserAction>]>([{} as User, () => { }]);
+export const UserCotext = createContext<[User, Dispatch<UserAction>]>([{} as User, () => { }]);

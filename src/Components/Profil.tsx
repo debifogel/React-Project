@@ -1,11 +1,11 @@
 import { Avatar, Box, Button, Modal, TextField } from "@mui/material"
 import { deepPurple } from "@mui/material/colors"
 import {  FormEvent, useContext, useEffect, useRef, useState } from "react";
-import { userCotext } from "../Types/User";
+import { UserCotext } from "../Types/User";
 import { login } from "../Types/MobxStore";
 import { observer } from "mobx-react-lite";
 const Profil= observer(()=>{  
-const [userSite,DispachSiteUser]=useContext(userCotext)
+const [userSite,DispachSiteUser]=useContext(UserCotext)
 const[toUpdate,setToUpdate]=useState(false)
 const[letter,setLetter]=useState(' ')
 const name = useRef<HTMLInputElement>(null);
@@ -20,15 +20,15 @@ const styleInput={height:"30",width:"200",margin:"10px"}
       try{
         if(!login)
           return;
-        const res = await fetch('http://localhost:3000/api/user', {
+        const res = await fetch('http://localhost:3000/api/user',{
         method: 'PUT',        
           headers: {
           'Content-Type': 'application/json',
           "user-id":JSON.stringify(userSite.id) }
           ,body: JSON.stringify(userSite)})            
-           if(res.status==403){alert("sorry")}
+           if(res.status==404){alert("sorry you dont login")}
            if (!res.ok) { throw new Error(`fetch error ${res.status}`) }
-           setLetter(userSite.name)               
+           setLetter(userSite.firstName)               
         }       
       catch(e) {console.log(e);}}
     const handleSubmit=(e: FormEvent)=>{
@@ -36,8 +36,8 @@ const styleInput={height:"30",width:"200",margin:"10px"}
       setToUpdate(false)
        DispachSiteUser({
         type: "UPDATE", field: {          
-          name: name.current?.value||userSite.name,
-          familyname: familyName.current?.value||userSite.familyname,
+          firstName: name.current?.value||userSite.firstName,
+          lastName: familyName.current?.value||userSite.lastName,
           address: address.current?.value||userSite.address,
           email: email.current?.value||userSite.email,
           password: password.current?.value||userSite.password,
@@ -48,10 +48,12 @@ const styleInput={height:"30",width:"200",margin:"10px"}
       if(!userSite.id||userSite.id===0){return}
       toserver()
     },[userSite])
-return (<>      
+return (<>  
+  {!login.login&&<Avatar/>}
+{login.login&&
   <Button onClick={upDateDetails} sx={{borderRadius:"30px", height:"55px"}}> 
-  <Avatar sx={{ bgcolor: deepPurple[500] }}>{letter[0]}</Avatar>
-  </Button>
+  <Avatar sx={{ bgcolor: deepPurple[500] }}>{(letter??' ')[0]}</Avatar>
+  </Button>}
   <Modal open={toUpdate} sx={{  width: "300",position:"fixed",left:"300px"}}>
   <Box >
 <form onSubmit={handleSubmit} >

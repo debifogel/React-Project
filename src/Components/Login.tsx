@@ -1,12 +1,12 @@
 import {    TextField  } from "@mui/material"
 import {  FormEvent,useContext, useRef } from "react"
-import { userCotext } from "../Types/User"
+import { UserCotext } from "../Types/User"
 import { observer } from "mobx-react-lite"
 import { login } from "../Types/MobxStore"
 import { useNavigate } from "react-router-dom"
 const Login=observer(()=>{
   const navigate = useNavigate();
-  const [,DispachSiteUser]=useContext(userCotext)
+  const [,DispachSiteUser]=useContext(UserCotext)
   const passwordRef = useRef<HTMLInputElement>(null)
     const emailRef = useRef<HTMLInputElement>(null)
  //let  [password,setpassword]=useState("")
@@ -36,8 +36,7 @@ const handleSubmit=async (e: FormEvent)=>
              throw new Error(`fetch error ${res.status}`) 
         }
         DispachSiteUser({type:"POST",field:data.user})
-        console.log(data.user);
-                       
+        console.log(data.user);                      
       }
       catch(e)
       {
