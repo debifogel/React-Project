@@ -4,6 +4,15 @@
 
 This React project is a simple web application that demonstrates the core concepts of React, including component-based architecture, state management, and props. It includes examples of functional and class components, hooks, and routing. 
 
+## Project Features
+
+The project includes the following features:
+
+- **Login**: Users can log in to access personalized features.
+- **Register**: New users can create an account to start using the application.
+- **View Recipe List**: Users can view a list of available recipes.
+- **Add Recipe**: Logged-in users can add new recipes to the list.
+
 
 Welcome to the React Project! This README will guide you through the setup and usage of the project.
 
