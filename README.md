@@ -2,7 +2,8 @@
 
 ## What the Project Does
 
-This React project is a simple web application that demonstrates the core concepts of React, including component-based architecture, state management, and props. It includes examples of functional and class components, hooks, and routing. The project serves as a learning tool for those new to React and provides a foundation for building more complex applications.
+This React project is a simple web application that demonstrates the core concepts of React, including component-based architecture, state management, and props. It includes examples of functional and class components, hooks, and routing. 
+
 
 Welcome to the React Project! This README will guide you through the setup and usage of the project.
 
