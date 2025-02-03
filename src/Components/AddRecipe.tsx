@@ -50,6 +50,7 @@ const AddRecipe: React.FC = () => {
             console.log(error);
         }
         navig('/all-recipes');
+    
     };
     const AddIngredient = () => {append(''); };
     return (
